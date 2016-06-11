@@ -46,8 +46,10 @@ export default (app) => {
   // topic routes
   if (topicsController) {
     app.get('/topic', topicsController.all);
+    app.get('/topic/:id', topicsController.findOne);
     app.post('/topic/:id', topicsController.add);
     app.put('/topic/:id', topicsController.update);
+    app.put('/topic/content/:id', topicsController.updateContent);
     app.delete('/topic/:id', topicsController.remove);
   } else {
     console.warn(unsupportedMessage('topics routes'));

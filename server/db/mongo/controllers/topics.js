@@ -15,6 +15,19 @@ export function all(req, res) {
   });
 }
 
+/**
+ * Find one topic
+ */
+export function findOne(req, res) {
+  const query = { id: req.params.id };
+  Topic.findOne(query).exec((err, topic) => {
+    if (err) {
+      console.log('Error in query');
+      return res.status(500).send('Something is wrong in finding this data');
+    }
+    return res.json(topic);
+  });
+}
 
 /**
  * Add a Topic
@@ -31,7 +44,22 @@ export function add(req, res) {
 }
 
 /**
- * Update a topic
+* Update a topic content
+*/
+export function updateContent(req, res) {
+  const query = { id: req.params.id };
+  const data = req.body;
+  Topic.findOneAndUpdate(query, data, (err) => {
+    if (err) {
+      console.log('Error on save!');
+      return res.status(500).send('We failed to save for some reason');
+    }
+      return res.status(200).send('Updated Content successfully');
+  });
+}
+
+/**
+ * Update a topic count
  */
 export function update(req, res) {
   const query = { id: req.params.id };
@@ -55,8 +83,7 @@ export function update(req, res) {
         console.log('Error on save!');
         return res.status(500).send('We failed to save for some reason');
       }
-
-      return res.status(200).send('Updated successfully');
+      return res.status(200).send('Updated Count successfully');
     });
   }
 }
@@ -78,7 +105,9 @@ export function remove(req, res) {
 
 export default {
   all,
+  findOne,
   add,
+  updateContent,
   update,
   remove
 };
