@@ -1,9 +1,11 @@
 import topics from './topics';
 import users from './users';
+import questionnaires from './questionnaires';
 
-export { topics, users };
+export { topics, users, questionnaires };
 
 export default {
   topics,
-  users
+  users,
+  questionnaires
 };

@@ -7,6 +7,7 @@ import { controllers, passport as passportConfig } from '../db';
 
 const usersController = controllers && controllers.users;
 const topicsController = controllers && controllers.topics;
+const questionnairesController = controllers && controllers.questionnaires;
 
 export default (app) => {
   // user routes
@@ -53,5 +54,15 @@ export default (app) => {
     app.delete('/topic/:id', topicsController.remove);
   } else {
     console.warn(unsupportedMessage('topics routes'));
+  }
+    // questionnaire routes
+  if (questionnairesController) {
+    app.get('/questionnaire', questionnairesController.all);
+    app.get('/questionnaire/:id', questionnairesController.findOne);
+    app.post('/questionnaire', questionnairesController.add);
+    app.put('/questionnaire/:id', questionnairesController.update);
+    app.delete('/questionnaire/:id', questionnairesController.remove);
+  } else {
+    console.warn(unsupportedMessage('questionnaires routes'));
   }
 };
