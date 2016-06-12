@@ -19,7 +19,7 @@ const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
 
   return (
     <div className={cx('main-section')}>
-      <h3 className={cx('header')}>Vote for your favorite hack day idea</h3>
+      <h3 className={cx('header')}>Topics</h3>
       <ul className={cx('list')}>{topicItems}</ul>
     </div>
   );
