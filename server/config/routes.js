@@ -12,6 +12,8 @@ const questionnairesController = controllers && controllers.questionnaires;
 export default (app) => {
   // user routes
   if (usersController) {
+    app.get('/user', usersController.findAll);
+    app.get('/user/:id', usersController.findOne);
     app.post('/login', usersController.login);
     app.post('/signup', usersController.signUp);
     app.post('/logout', usersController.logout);

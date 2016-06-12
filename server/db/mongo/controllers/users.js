@@ -2,6 +2,34 @@ import User from '../models/user';
 import passport from 'passport';
 
 /**
+ * Find Users
+ */
+export function findAll(req, res) {
+  User.find({}).exec((err, users) => {
+    if (err) {
+      console.log('Error in first query');
+      return res.status(500).send('Something went wrong getting the data');
+    }
+    return res.json(users);
+  });
+}
+
+/**
+ * Find one user
+ */
+export function findOne(req, res) {
+  const query = { _id: req.params.id };
+  User.findOne(query).exec((err, user) => {
+    if (err) {
+      console.log('Error in query');
+      return res.status(500).send('Something is wrong in finding this data');
+    }
+    return res.json(user);
+  });
+}
+
+
+/**
  * POST /login
  */
 export function login(req, res, next) {
@@ -59,6 +87,8 @@ export function signUp(req, res, next) {
 }
 
 export default {
+  findAll,
+  findOne,
   login,
   logout,
   signUp
