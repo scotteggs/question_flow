@@ -22,10 +22,14 @@ class Vote extends Component {
     const {newTopic, topics, typing, createTopic, destroyTopic, incrementCount, decrementCount } = this.props;
     return (
       <div className={cx('vote')}>
+        <EntryBox topic={newTopic}
+          onEntryChange={typing}
+          onEntrySave={createTopic} />
         <MainSection topics={topics}
           onIncrement={incrementCount}
           onDecrement={decrementCount}
           onDestroy={destroyTopic} />
+        <Scoreboard topics={topics} />
       </div>
     );
   }
