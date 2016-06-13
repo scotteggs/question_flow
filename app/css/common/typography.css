@@ -3,23 +3,23 @@
 @value montserrat: 'Montserrat', Helvetica, Arial, sans-serif;
 
 .heading {
-  font-family: montserrat;
+  font-family: helvetica;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
 
   line-height: 48px;
 }
 
 .subheading {
-  font-family: montserrat;
+  font-family: helvetica;
   font-size: 21px;
-  font-weight: 700;
+  font-weight: 500;
 
   line-height: 24px;
 }
 
 .normal {
-  font-family: montserrat;
+  font-family: helvetica;
   font-size: 16px;
   font-weight: 400;
 
@@ -27,7 +27,7 @@
 }
 
 .small {
-  font-family: montserrat;
+  font-family: helvetica;
   font-size: 12px;
   font-weight: 400;
 
