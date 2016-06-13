@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 /*
  * Note: This is kept as a container-level component,
  *  i.e. We should keep this as the container that does the data-fetching

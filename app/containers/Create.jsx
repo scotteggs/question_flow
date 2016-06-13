@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { manualLogin, signUp, toggleLoginMode } from 'actions/users';
 import { createTopic } from 'actions/topics';
 import styles from 'css/components/login';
 import classNames from 'classnames/bind';
