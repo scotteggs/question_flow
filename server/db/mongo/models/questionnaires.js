@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 
 const QuestionnaireSchema = new mongoose.Schema({
   title: {type: String, maxlength: 30},
+  description: {type: String},
   questionnaireType: {type: String, enum: ['master', 'summission']},
   status: {type: String, enum: ['completed', 'inProgress', 'new']},
   submittedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

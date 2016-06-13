@@ -22,6 +22,7 @@ export default class TopicItem extends Component {
     const questions = this.props.questions.map((question, key) => {
       return (
         <QuestionItem
+          key={key}
           index={key}
           question={question.question}
           questionType={question.questionType} />);
@@ -29,7 +30,7 @@ export default class TopicItem extends Component {
     return (
       <li className={cx('topic-item')} key={this.props.id}>
         <span className={cx('topic')}>{this.props.title}</span>
-        <span className={cx('topic')}>{this.props.questionnaireType}</span>  
+        <span className={cx('topic')}>{this.props.questionnaireType}</span>
         <button
           className={
           cx('button', 'destroy')
@@ -44,6 +45,5 @@ TopicItem.propTypes = {
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  questions: PropTypes.array.isRequired,
   onDestroy: PropTypes.func.isRequired
 };

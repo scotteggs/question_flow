@@ -30,7 +30,5 @@ export default class QuestionItem extends Component {
 QuestionItem.propTypes = {
   index: PropTypes.number.isRequired,
   question: PropTypes.string.isRequired,
-  questionType: PropTypes.string.isRequired,
-  questions: PropTypes.array.isRequired,
-  onDestroy: PropTypes.func.isRequired
+  questionType: PropTypes.string.isRequired
 };

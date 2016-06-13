@@ -24,6 +24,7 @@ class MainContainer extends Component {
         <MainSection topics={topics}
           onDestroy={destroyTopic} />
       </div>
+      
     );
   }
 }
@@ -33,7 +34,6 @@ MainContainer.propTypes = {
   typing: PropTypes.func.isRequired,
   createTopic: PropTypes.func.isRequired,
   destroyTopic: PropTypes.func.isRequired,
-  newTopic: PropTypes.string
 };
 
 function mapStateToProps(state) {

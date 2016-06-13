@@ -18,16 +18,11 @@ polyfill();
  * @return Promise
  */
 export function makeTopicRequest(method, id, data, api = '/questionnaire') {
-  return request[method](api + (id ? ('/' + id) : ''), data);
+  // console.log('method', method);
+  // console.log('id', id);
+  return request[method](api + (id && method !== 'post' ? ('/' + id) : ''), data);
 }
 
-export function increment(index) {
-  return { type: types.INCREMENT_COUNT, index };
-}
-
-export function decrement(index) {
-  return { type: types.DECREMENT_COUNT, index };
-}
 
 export function destroy(index) {
   return { type: types.DESTROY_TOPIC, index };
@@ -49,8 +44,9 @@ export function createTopicRequest(data) {
   return {
     type: types.CREATE_TOPIC_REQUEST,
     id: data.id,
-    count: data.count,
-    text: data.text
+    title: data.title,
+    description: data.description,
+    questionnaireType: data.questionnaireType
   };
 }
 
@@ -78,29 +74,28 @@ export function createTopicDuplicate() {
 // which will get executed by Redux-Thunk middleware
 // This function does not need to be pure, and thus allowed
 // to have side effects, including executing asynchronous API calls.
-export function createTopic(text) {
+export function createTopic(formObj) {
+  const title = formObj.title;
+  const description = formObj.description;
+  const questionnaireType = 'master';
+  const questions = formObj.questions;
+
   return (dispatch, getState) => {
     // If the text box is empty
-    if (text.trim().length <= 0) return;
+    if (title.trim().length <= 0) return;
 
-    const id = md5.hash(text);
+    const id = md5.hash(title);
     // Redux thunk's middleware receives the store methods `dispatch`
     // and `getState` as parameters
     const { topic } = getState();
-    const data = {
-      count: 1,
-      id,
-      text
-    };
 
-    // Conditional dispatch
-    // If the topic already exists, make sure we emit a dispatch event
-    if (topic.topics.filter(topicItem => topicItem.id === id).length > 0) {
-      // Currently there is no reducer that changes state for this
-      // For production you would ideally have a message reducer that
-      // notifies the user of a duplicate topic
-      return dispatch(createTopicDuplicate());
-    }
+    const data = {
+      id,
+      title,
+      description,
+      questionnaireType,
+      questions
+    };
 
     // First dispatch an optimistic update
     dispatch(createTopicRequest(data));
@@ -126,29 +121,6 @@ export function fetchTopics() {
   return {
     type: types.GET_TOPICS,
     promise: makeTopicRequest('get')
-  };
-}
-
-
-export function incrementCount(id, index) {
-  return dispatch => {
-    return makeTopicRequest('put', id, {
-        isFull: false,
-        isIncrement: true
-      })
-      .then(() => dispatch(increment(index)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
-  };
-}
-
-export function decrementCount(id, index) {
-  return dispatch => {
-    return makeTopicRequest('put', id, {
-        isFull: false,
-        isIncrement: false
-      })
-      .then(() => dispatch(decrement(index)))
-      .catch(() => dispatch(createTopicFailure({id, error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
 }
 
