@@ -16,7 +16,7 @@ const Meta = () => (
     title="Question Flow" meta={config.meta}
     link={config.link}
   />
-)
+);
 
 
 ReactDOMServer.renderToString(<Meta />);

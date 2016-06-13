@@ -5,21 +5,22 @@ import styles from 'css/components/main-section';
 
 const cx = classNames.bind(styles);
 
-const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
+const MainSection = ({onDestroy, topics}) => {
   const topicItems = topics.map((topic, key) => {
     return (
-      <TopicItem index={key}
-        id={topic.id}
+      <TopicItem
+        index={key}
+        id={topic._id}
         key={key}
-        text={topic.text}
-        onIncrement={onIncrement}
-        onDecrement={onDecrement}
+        title={topic.title}
+        questions={topic.questions}
+        questionnaireType={topic.questionnaireType}
         onDestroy={onDestroy} />);
     });
 
   return (
     <div className={cx('main-section')}>
-      <h3 className={cx('header')}>Topics</h3>
+      <h3 className={cx('header')}>Questionnaires</h3>
       <ul className={cx('list')}>{topicItems}</ul>
     </div>
   );
@@ -27,8 +28,6 @@ const MainSection = ({onIncrement, onDecrement, onDestroy, topics}) => {
 
 MainSection.propTypes = {
   topics: PropTypes.array.isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired,
   onDestroy: PropTypes.func.isRequired
 };
 

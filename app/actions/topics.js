@@ -17,7 +17,7 @@ polyfill();
  * @param String endpoint
  * @return Promise
  */
-export function makeTopicRequest(method, id, data, api = '/topic') {
+export function makeTopicRequest(method, id, data, api = '/questionnaire') {
   return request[method](api + (id ? ('/' + id) : ''), data);
 }
 

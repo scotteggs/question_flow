@@ -2,7 +2,7 @@
 
 .main-section {
   composes: card from '../common/card';
-  width: 50%;
+  width: 100%;
   border-radius: global-radius;
 }
 

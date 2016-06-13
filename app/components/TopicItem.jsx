@@ -1,55 +1,49 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames/bind';
+import QuestionItem from 'components/QuestionItem';
 import styles from 'css/components/topic-item';
 
 const cx = classNames.bind(styles);
 
 export default class TopicItem extends Component {
+
   constructor(props) {
     super(props);
-    this.onIncrement = this.onIncrement.bind(this);
-    this.onDecrement = this.onDecrement.bind(this);
     this.onDestroyClick = this.onDestroyClick.bind(this);
   }
 
-  onIncrement() {
-    const { id, index, onIncrement } = this.props;
-    onIncrement(id, index);
-  }
-
-  onDecrement() {
-    const { id, index, onDecrement } = this.props;
-    onDecrement(id, index);
-  }
-
   onDestroyClick() {
-    const { id, index, onDestroy } = this.props;
+    const { id, index, onDestroy} = this.props;
     onDestroy(id, index);
   }
 
+
   render() {
+    const questions = this.props.questions.map((question, key) => {
+      return (
+        <QuestionItem
+          index={key}
+          question={question.question}
+          questionType={question.questionType} />);
+    });
     return (
       <li className={cx('topic-item')} key={this.props.id}>
-        <span className={cx('topic')}>{this.props.text}</span>
-        <button className={
-          cx('button', 'increment')
-        } onClick={this.onIncrement}>+</button>
-        <button className={
-          cx('button', 'decrement')
-        } onClick={this.onDecrement}>-</button>
-        <button className={
+        <span className={cx('topic')}>{this.props.title}</span>
+        <span className={cx('topic')}>{this.props.questionnaireType}</span>  
+        <button
+          className={
           cx('button', 'destroy')
         } onClick={this.onDestroyClick}>{String.fromCharCode(215)}</button>
+        <ul className={cx('list')}>{questions}</ul>
       </li>
     );
   }
 }
 
 TopicItem.propTypes = {
-  text: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  onIncrement: PropTypes.func.isRequired,
-  onDecrement: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  questions: PropTypes.array.isRequired,
   onDestroy: PropTypes.func.isRequired
 };
