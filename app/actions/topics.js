@@ -3,6 +3,7 @@ import { polyfill } from 'es6-promise';
 import request from 'axios';
 import md5 from 'spark-md5';
 import * as types from 'types';
+import { push } from 'react-router-redux';
 
 polyfill();
 
@@ -107,6 +108,8 @@ export function createTopic(formObj) {
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
           // We could return res.json();
+          console.log("yoyoyoyoyo");
+          dispatch(push('/'));
           return dispatch(createTopicSuccess());
         }
       })
