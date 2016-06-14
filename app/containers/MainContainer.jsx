@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
 import { createTopic, typing, incrementCount,
   decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
@@ -34,6 +33,7 @@ MainContainer.propTypes = {
   typing: PropTypes.func.isRequired,
   createTopic: PropTypes.func.isRequired,
   destroyTopic: PropTypes.func.isRequired,
+  newTopic: PropTypes.string
 };
 
 function mapStateToProps(state) {
