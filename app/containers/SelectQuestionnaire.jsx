@@ -21,6 +21,8 @@ class SelectQuestionnaire extends Component {
 	render() {
 		const {topics} = this.props;
 		const filteredTopics = _.filter(topics, { 'questionnaireType': 'master'});
+    const active = null;
+
     return (
 		<div>
 			<QuestionnairesList topics={filteredTopics} />

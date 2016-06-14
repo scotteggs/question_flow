@@ -8,19 +8,23 @@ export default class QuestionnaireItem extends Component {
 
   constructor(props) {
     super(props);
-    // this.onDestroyClick = this.onDestroyClick.bind(this);
+    this.select = this.select.bind(this);
   }
 
-  // onDestroyClick() {
-  //   const { id, index, onDestroy} = this.props;
-  //   onDestroy(id, index);
-  // }
+  select() {
+    const { id } = this.props;
+    let selected = id;
+    console.log("selected: ", selected);
+  }
 
 
   render() {
     return (
       <li className={cx('topic-item')} key={this.props.id}>
         <span className={cx('topic')}>{this.props.title}</span>
+        <button
+          onClick={this.select}>
+          Select</button>
       </li>
     );
   }

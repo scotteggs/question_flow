@@ -24,7 +24,6 @@ export function makeTopicRequest(method, id, data, api = '/questionnaire') {
   return request[method](api + (id && method !== 'post' ? ('/' + id) : ''), data);
 }
 
-
 export function destroy(index) {
   return { type: types.DESTROY_TOPIC, index };
 }
@@ -108,7 +107,6 @@ export function createTopic(formObj) {
           // on success, but I've opted to leave that out
           // since we already did an optimistic update
           // We could return res.json();
-          console.log("yoyoyoyoyo");
           dispatch(push('/'));
           return dispatch(createTopicSuccess());
         }
