@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 import App from 'containers/App';
 import MainContainer from 'containers/MainContainer';
-import About from 'containers/About';
+import ViewQuestionnaire from 'containers/ViewQuestionnaire';
 import LoginOrRegister from 'containers/LoginOrRegister';
 import SelectQuestionnaire from 'containers/SelectQuestionnaire';
 import Create from 'containers/create';
@@ -39,7 +39,7 @@ export default (store) => {
       <IndexRoute component={MainContainer} />
       <Route path="login" component={LoginOrRegister} onEnter={redirectAuth} />
       <Route path="select" component={SelectQuestionnaire} onEnter={requireAuth} />
-      <Route path="about" component={About} />
+      <Route path="view" component={ViewQuestionnaire} />
       <Route path="create" component={Create} />
     </Route>
   );

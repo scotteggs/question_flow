@@ -24,18 +24,12 @@ export function makeTopicRequest(method, id, data, api = '/questionnaire') {
   return request[method](api + (id && method !== 'post' ? ('/' + id) : ''), data);
 }
 
-
-
-
 export function typing(text) {
   return {
     type: types.TYPING,
     newTopic: text
   };
 }
-
-
-
 
 /*
  * @param data
