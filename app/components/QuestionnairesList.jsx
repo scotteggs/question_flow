@@ -1,34 +1,32 @@
 import React, { PropTypes } from 'react';
-import TopicItem from 'components/TopicItem';
+import QuestionnaireItem from 'components/QuestionnaireItem';
 import classNames from 'classnames/bind';
 import styles from 'css/components/main-section';
 
 const cx = classNames.bind(styles);
 
-const MainSection = ({onDestroy, topics}) => {
+const QuestionnaireList = ({topics}) => {
   const topicItems = topics.map((topic, key) => {
     return (
-      <TopicItem
+      <QuestionnaireItem
         index={key}
         id={topic._id}
         key={key}
         title={topic.title}
         questions={topic.questions}
-        questionnaireType={topic.questionnaireType}
-        onDestroy={onDestroy} />);
+        questionnaireType={topic.questionnaireType} />);
     });
 
   return (
     <div className={cx('main-section')}>
-      <h3 className={cx('header')}>Questionnaires</h3>
+      <h3 className={cx('header')}>Select a Questionnaire to Fill Out</h3>
       <ul className={cx('list')}>{topicItems}</ul>
     </div>
   );
 };
 
-MainSection.propTypes = {
+QuestionnaireList.propTypes = {
   topics: PropTypes.array.isRequired,
-  onDestroy: PropTypes.func.isRequired
 };
 
-export default MainSection;
+export default QuestionnaireList;

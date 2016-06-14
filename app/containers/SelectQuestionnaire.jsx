@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
-import MainSection from 'components/MainSection';
+import QuestionnairesList from 'components/QuestionnairesList';
 import { fetchTopics } from 'actions/topics';
 import styles from 'css/components/vote';
 /*
@@ -12,15 +13,18 @@ import styles from 'css/components/vote';
 const cx = classNames.bind(styles);
 
 class SelectQuestionnaire extends Component {
-
+	//get topics prior to page loading
 	static need = [
 		fetchTopics
 	]
 
 	render() {
 		const {topics} = this.props;
+		const filteredTopics = _.filter(topics, { 'questionnaireType': 'master'});
     return (
-		<div>hello there</div>
+		<div>
+			<QuestionnairesList topics={filteredTopics} />
+		</div>
     );
   }
 }
@@ -31,8 +35,7 @@ SelectQuestionnaire.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    topics: state.topic.topics,
-    newTopic: state.topic.newTopic
+    topics: state.topic.topics
   };
 }
 

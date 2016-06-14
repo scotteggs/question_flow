@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
+import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
+import QuestionnaireAdd from 'components/QuestionnaireAdd';
 import { createTopic, typing, incrementCount,
   decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
 import styles from 'css/components/vote';
@@ -15,15 +18,15 @@ class MainContainer extends Component {
   static need = [  // eslint-disable-line
     fetchTopics
   ]
-
+  
   render() {
     const {newTopic, topics, typing, createTopic, destroyTopic} = this.props;
+    const filteredTopics = _.filter(topics, { 'questionnaireType': 'master'});
     return (
       <div className={cx('vote')}>
-        <MainSection topics={topics}
+        <MainSection topics={filteredTopics}
           onDestroy={destroyTopic} />
       </div>
-      
     );
   }
 }
@@ -39,7 +42,8 @@ MainContainer.propTypes = {
 function mapStateToProps(state) {
   return {
     topics: state.topic.topics,
-    newTopic: state.topic.newTopic
+    newTopic: state.topic.newTopic,
+    destroyTopic: state.topic.destroyTopic
   };
 }
 
