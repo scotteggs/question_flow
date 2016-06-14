@@ -19,7 +19,7 @@ class SelectQuestionnaire extends Component {
 	]
 
 	render() {
-		const {topics} = this.props;
+		const {topics, selectedTopic} = this.props;
 		const filteredTopics = _.filter(topics, { 'questionnaireType': 'master'});
     const active = null;
 
@@ -37,7 +37,8 @@ SelectQuestionnaire.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    topics: state.topic.topics
+    topics: state.topic.topics,
+    selectedTopic: null
   };
 }
 

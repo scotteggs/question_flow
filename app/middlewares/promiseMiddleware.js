@@ -4,6 +4,7 @@
 */
 
 export default function promiseMiddleware() {
+  console.log('middleware fires');
   return next => action => {
     const { promise, type, ...rest } = action;
 

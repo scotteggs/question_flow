@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import classNames from 'classnames/bind';
 import EntryBox from 'components/EntryBox';
 import MainSection from 'components/MainSection';
-import QuestionnaireAdd from 'components/QuestionnaireAdd';
 import { createTopic, typing, incrementCount,
   decrementCount, destroyTopic, fetchTopics } from 'actions/topics';
 import styles from 'css/components/vote';

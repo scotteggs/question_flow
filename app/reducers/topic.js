@@ -7,12 +7,14 @@ import {
   DECREMENT_COUNT,
   GET_TOPICS_REQUEST,
   GET_TOPICS_SUCCESS,
-  GET_TOPICS_FAILURE } from 'types';
+  GET_TOPICS_FAILURE,
+  SELECT } from 'types';
 
 
 export default function topic(state = {
   topics: [],
-  newTopic: ''
+  newTopic: '',
+  selected: ''
 }, action) {
   switch (action.type) {
     case TYPING:
@@ -69,6 +71,10 @@ export default function topic(state = {
         ...state.topics.slice(action.index + 1)
         ],
         newTopic: state.newTopic
+      };
+    case SELECT:
+      return {
+        selected: true
       };
 
     default:

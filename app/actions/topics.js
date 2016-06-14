@@ -24,9 +24,7 @@ export function makeTopicRequest(method, id, data, api = '/questionnaire') {
   return request[method](api + (id && method !== 'post' ? ('/' + id) : ''), data);
 }
 
-export function destroy(index) {
-  return { type: types.DESTROY_TOPIC, index };
-}
+
 
 
 export function typing(text) {
@@ -35,6 +33,9 @@ export function typing(text) {
     newTopic: text
   };
 }
+
+
+
 
 /*
  * @param data
@@ -77,8 +78,14 @@ export function createTopicDuplicate() {
 export function createTopic(formObj) {
   const title = formObj.title;
   const description = formObj.description;
-  const questionnaireType = 'master';
+  let questionnaireType = '';
   const questions = formObj.questions;
+
+  if (formObj.type === 'submission') {
+    questionnaireType = 'submission';
+  } else {
+    questionnaireType = 'master';
+  }
 
   return (dispatch, getState) => {
     // If the text box is empty
@@ -125,6 +132,7 @@ export function fetchTopics() {
   };
 }
 
+
 export function destroyTopic(id, index) {
   return dispatch => {
     return makeTopicRequest('delete', id)
@@ -132,4 +140,12 @@ export function destroyTopic(id, index) {
       .catch(() => dispatch(createTopicFailure({id,
         error: 'Oops! Something went wrong and we couldn\'t add your vote'})));
   };
+}
+
+export function destroy(index) {
+  return { type: types.DESTROY_TOPIC, index };
+}
+
+export function selectTopic(id) {
+  return { type: types.SELECT, id};
 }

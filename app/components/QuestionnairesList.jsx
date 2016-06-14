@@ -13,7 +13,8 @@ const QuestionnaireList = ({topics}) => {
         id={topic._id}
         key={key}
         title={topic.title}
-        questionnaireType={topic.questionnaireType} />);
+        questionnaireType={topic.questionnaireType}
+        questions={topic.questions} />);
     });
 
   return (
