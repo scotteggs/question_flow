@@ -54,7 +54,7 @@ class QuestionnaireItem extends Component {
             <input
             type="text"
             ref="q1"
-            placeholder={this.props.questions[0].question} /><br/>
+            placeholder={this.props.questions[0].question} /><br />
             <input
             type="text"
             ref="q2"
