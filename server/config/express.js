@@ -73,7 +73,7 @@ export default (app) => {
   };
 
   console.log('--------------------------');
-  console.log('===> 😊  Starting Server . . .');
+  console.log('===>  Starting Server . . .');
   console.log(`===>  Environment: ${ENV}`);
   console.log(`===>  Listening on port: ${app.get('port')}`);
   console.log(`===>  Using DB TYPE: ${DB_TYPE}`);
