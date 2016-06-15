@@ -22,7 +22,6 @@ describe('Topic Actions', () => {
     const id = md5.hash(topic);
     const data = {
       id,
-      count: 1,
       text: topic
     };
 
@@ -45,9 +44,8 @@ describe('Topic Actions', () => {
       const expectedActions = [
         {
           type: types.CREATE_TOPIC_REQUEST,
-          id,
-          count: 1,
-          text: data.text
+          id: data.id,
+          title: data.title
         }, {
           type: types.CREATE_TOPIC_SUCCESS
         }
@@ -79,79 +77,6 @@ describe('Topic Actions', () => {
 
       const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
-    });
-
-    it('dispatches a duplicate action for a duplicate topic', () => {
-      initialState.topic.topics.push(data);
-
-      const expectedActions = [
-        {
-          type: types.CREATE_TOPIC_DUPLICATE
-        }
-      ];
-
-      const store = mockStore(initialState);
-      store.dispatch(actions.createTopic(topic));
-      expect(store.getActions()).toEqual(expectedActions);
-      initialState.topic.topics.pop();
-    });
-
-    it('incrementCount dispatches an increment count action on success', done => {
-      const expectedActions = [
-      {
-        type: types.INCREMENT_COUNT,
-        index
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
-      const store = mockStore();
-      store.dispatch(actions.incrementCount(data.id, index))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
-    });
-
-    it('incrementCount should not dispatch a failure action on failure', done => {
-      const expectedActions = [
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        id: data.id,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote'
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
-      const store = mockStore();
-      store.dispatch(actions.incrementCount(data.id, index))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
-    });
-
-    it('decrementCount dispatches an decrement count action on success', done => {
-      const expectedActions = [
-      {
-        type: types.DECREMENT_COUNT,
-        index
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.resolve({ status: 200 }));
-      const store = mockStore();
-      store.dispatch(actions.decrementCount(data.id, index))
-        .then(() => {
-          expect(store.getActions()).toEqual(expectedActions);
-        }).then(done).catch(done);
-    });
-
-    it('decrementCount should not dispatch a decrement count action on failure', done => {
-      const expectedActions = [
-      {
-        type: types.CREATE_TOPIC_FAILURE,
-        error: 'Oops! Something went wrong and we couldn\'t add your vote',
-        id: data.id
-      }];
-      sandbox.stub(axios, 'put').returns(Promise.reject({ status: 400 }));
-      const store = mockStore(initialState);
-      store.dispatch(actions.decrementCount(data.id, index))
         .then(() => {
           expect(store.getActions()).toEqual(expectedActions);
         }).then(done).catch(done);
@@ -205,21 +130,6 @@ describe('Topic Actions', () => {
       sandbox.restore();
     });
 
-    it('should create an action object to increment the count', () => {
-      const expectedAction = {
-        type: types.INCREMENT_COUNT,
-        index
-      };
-      expect(actions.increment(index)).toEqual(expectedAction);
-    });
-
-    it('should create an action object to decrement count', () => {
-      const expectedAction = {
-        type: types.DECREMENT_COUNT,
-        index
-      };
-      expect(actions.decrement(index)).toEqual(expectedAction);
-    });
 
     it('should create an action object to destroy a topic', () => {
       const expectedAction = {
