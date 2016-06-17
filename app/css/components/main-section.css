@@ -6,15 +6,15 @@
   border-radius: global-radius;
 }
 
-  .header {
-    composes: title from '../common/card';
-    composes: subheading from '../common/typography';
-    background: #4ca5ff;
-    color: #fff;
-  }
+.header {
+  composes: title from '../common/card';
+  composes: subheading from '../common/typography';
+  background: #4ca5ff;
+  color: #fff;
+}
 
-  .list {
-    list-style: none;
-    padding: 16px;
-  }
+.list {
+  list-style: none;
+  padding: 16px;
+}
 

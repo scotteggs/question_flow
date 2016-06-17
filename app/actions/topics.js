@@ -24,6 +24,11 @@ export function makeTopicRequest(method, id, data, api = '/questionnaire') {
   return request[method](api + (id && method !== 'post' ? ('/' + id) : ''), data);
 }
 
+export function destroy(index) {
+  return { type: types.DESTROY_TOPIC, index };
+}
+
+
 export function typing(text) {
   return {
     type: types.TYPING,
@@ -83,7 +88,7 @@ export function createTopic(formObj) {
 
   return (dispatch, getState) => {
     // If the text box is empty
-    if (title.trim().length <= 0) return;
+   
 
     const id = md5.hash(title);
     // Redux thunk's middleware receives the store methods `dispatch`
@@ -136,9 +141,7 @@ export function destroyTopic(id, index) {
   };
 }
 
-export function destroy(index) {
-  return { type: types.DESTROY_TOPIC, index };
-}
+
 
 export function selectTopic(id) {
   return { type: types.SELECT, id};

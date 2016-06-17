@@ -13,8 +13,7 @@ import {
 
 export default function topic(state = {
   topics: [],
-  newTopic: '',
-  selected: ''
+  newTopic: ''
 }, action) {
   switch (action.type) {
     case TYPING:

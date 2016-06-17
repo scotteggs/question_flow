@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Button } from 'react-bootstrap';
 import classNames from 'classnames/bind';
 import QuestionItem from 'components/QuestionItem';
 import styles from 'css/components/topic-item';
@@ -28,15 +29,20 @@ export default class TopicItem extends Component {
           questionType={question.questionType} />);
     });
     return (
-      <li className={cx('topic-item')} key={this.props.id}>
-        <span className={cx('topic')}>{this.props.title}</span>
-        <span className={cx('topic')}>{this.props.questionnaireType}</span>
-        <button
-          className={
-          cx('button', 'destroy')
-        } onClick={this.onDestroyClick}>{String.fromCharCode(215)}</button>
-        <ul className={cx('list')}>{questions}</ul>
-      </li>
+        <tr key={this.props.id}>
+          <td>{this.props.title}</td>
+          <td>{this.props.description}</td>
+          <td>
+            <Button
+            bsStyle="danger"
+            className={
+            cx('button', 'destroy')
+            } onClick={this.onDestroyClick}>Delete</Button>
+          </td>
+          <td>
+            <ul className={cx('list')}>{questions}</ul>
+          </td>
+        </tr>
     );
   }
 }
@@ -45,5 +51,6 @@ TopicItem.propTypes = {
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   onDestroy: PropTypes.func.isRequired
 };

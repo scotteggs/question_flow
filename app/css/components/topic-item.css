@@ -13,12 +13,8 @@
 
 .button {
   font-size: font-medium;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: none;
-  margin: 0 28px;
-  color: #fff;
+  height: 25px;
+  margin: 5px;
 }
 
 .increment {

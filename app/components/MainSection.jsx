@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Table } from 'react-bootstrap';
 import TopicItem from 'components/TopicItem';
 import classNames from 'classnames/bind';
 import styles from 'css/components/main-section';
@@ -13,6 +14,7 @@ const MainSection = ({onDestroy, topics}) => {
         id={topic._id}
         key={key}
         title={topic.title}
+        description={topic.description}
         questions={topic.questions}
         questionnaireType={topic.questionnaireType}
         onDestroy={onDestroy} />);
@@ -21,7 +23,19 @@ const MainSection = ({onDestroy, topics}) => {
   return (
     <div className={cx('main-section')}>
       <h3 className={cx('header')}>Questionnaires</h3>
-      <ul className={cx('list')}>{topicItems}</ul>
+      <Table responsive className={cx('table')}>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Destroy</th>
+            <th>Questions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {topicItems}
+        </tbody>
+      </Table>
     </div>
   );
 };

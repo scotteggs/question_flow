@@ -22,7 +22,7 @@ describe('Topic Actions', () => {
     const id = md5.hash(topic);
     const data = {
       id,
-      text: topic
+      topic
     };
 
     const initialState = {
@@ -74,7 +74,6 @@ describe('Topic Actions', () => {
         }
       ];
       sandbox.stub(axios, 'post').returns(Promise.reject({status: 404, data: 'Oops! Something went wrong and we couldn\'t create your topic'}));
-
       const store = mockStore(initialState);
       store.dispatch(actions.createTopic(topic))
         .then(() => {

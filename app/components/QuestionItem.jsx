@@ -22,6 +22,7 @@ export default class QuestionItem extends Component {
       <li className={cx('topic-item')} key={this.props.id}>
         <span className={cx('topic')}>{this.props.question}</span>
         <span className={cx('topic')}>{this.props.questionType}</span>
+        <br /><br />
       </li>
     );
   }

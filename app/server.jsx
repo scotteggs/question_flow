@@ -117,6 +117,7 @@ export default function render(req, res) {
               <script>window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};</script>
               ${analtyicsScript}
               <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
+
             </body>
           </html>
         `);
